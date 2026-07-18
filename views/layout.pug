@@ -1,0 +1,82 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title= title || "Asset Management System"
+
+        link(rel="stylesheet", href="/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/icons/font/bootstrap-icons.css")
+        link(rel="stylesheet", href="/css/style.css")
+        
+
+    body.bg-light
+
+        .container-fluid
+            .row
+                aside.col-md-.col-lg-2.bg-dark.min-vh-100
+
+                    .p-3.text-white
+
+                        h5.mb-4.fw-bold
+                            i.bi.bi-box-seam.me-
+                            | Asset Management
+
+                        ul.nav.flex-column
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/")
+                                    i.bi.bi-speedometer2.me-2
+                                    | Dashboard
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/employee_master")
+                                    i.bi.bi-people.me-2
+                                    | Employee Master
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/asset_master")
+                                    i.bi.bi-laptop.me-2
+                                    | Asset Master
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/asset_categories")
+                                    i.bi.bi-tags.me-2
+                                    | Asset Categories
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/stock_view")
+                                    i.bi.bi-boxes.me-2
+                                    | Stock View
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/issue_asset")
+                                    i.bi.bi-box-arrow-right.me-2
+                                    | Issue Asset
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/return_asset")
+                                    i.bi.bi-arrow-return-left.me-2
+                                    | Return Asset
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/scrap_asset")
+                                    i.bi.bi-arrow-return-left.me-2
+                                    | Scrap Asset
+
+                            li.nav-item.mb-1
+                                a.nav-link.text-white(href="/asset_history")
+                                    i.bi.bi-clock-history.me-2
+                                    | Asset History
+
+               
+                main.col-md-9.col-lg-10
+
+                    .p-4
+
+                        block content
+
+        script(src="/js/bootstrap.bundle.min.js")
+        script(src="/js/app.js")
+        block scripts

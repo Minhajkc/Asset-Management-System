@@ -1,0 +1,44 @@
+tbody
+
+    if employees && employees.length
+
+        each employee in employees
+
+            tr
+
+                td= employee.employee_code
+                td= employee.employee_name
+                td= employee.email
+                td= employee.mobile
+                td= employee.department
+                td= employee.designation
+                td= employee.joining_date
+
+                td
+
+                    if employee.status === "Active"
+
+                        span.badge.bg-success Active
+
+                    else
+
+                        span.badge.bg-danger Inactive
+
+                td.text-center
+
+                    button.btn.btn-sm.btn-outline-primary.me-1(
+                        type="button"
+                    )
+                        i.bi.bi-eye
+
+                    button.btn.btn-sm.btn-outline-warning(
+                        type="button"
+                    )
+                        i.bi.bi-pencil-square
+
+    else
+
+        tr
+
+            td.text-center.text-muted(colspan="9")
+                | No employees found.

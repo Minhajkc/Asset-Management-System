@@ -1,0 +1,34 @@
+body{
+    overflow-x:hidden;
+    background:#f8f9fa;
+}
+
+aside{
+    position:sticky;
+    top:0;
+}
+
+aside .nav-link{
+    color:#adb5bd;
+    padding:12px 15px;
+    border-radius:8px;
+    transition:.2s;
+}
+
+aside .nav-link:hover{
+    background:#495057;
+    color:#fff;
+}
+
+aside .nav-link.active{
+    background:#0d6efd;
+    color:#fff;
+}
+
+aside i{
+    width:22px;
+}
+
+main{
+    min-height:100vh;
+}

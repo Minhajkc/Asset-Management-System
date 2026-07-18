@@ -1,0 +1,90 @@
+.modal.fade#employeeModal(tabindex="-1")
+
+    .modal-dialog.modal-lg
+
+        .modal-content
+
+            .modal-header
+
+                h5.modal-title Employee
+
+                button.btn-close(
+                    data-bs-dismiss="modal"
+                )
+
+            form#employeeForm(
+                 action="/employee_master"
+    method="POST"
+            )
+
+                .modal-body
+
+                    .row.g-3
+
+                        .col-md-6
+                            label.form-label Employee Code
+                            input.form-control(
+                                type="text"
+                                name="employee_code"
+                            )
+
+                        .col-md-6
+                            label.form-label Employee Name
+                            input.form-control(
+                                type="text"
+                                name="employee_name"
+                            )
+
+                        .col-md-6
+                            label.form-label Email
+                            input.form-control(
+                                type="email"
+                                name="email"
+                            )
+
+                        .col-md-6
+                            label.form-label Mobile
+                            input.form-control(
+                                type="text"
+                                name="mobile"
+                            )
+
+                        .col-md-6
+                            label.form-label Department
+                            input.form-control(
+                                type="text"
+                                name="department"
+                            )
+
+                        .col-md-6
+                            label.form-label Designation
+                            input.form-control(
+                                type="text"
+                                name="designation"
+                            )
+
+                        .col-md-6
+                            label.form-label Joining Date
+                            input.form-control(
+                                type="date"
+                                name="joining_date"
+                            )
+
+                        .col-md-6
+
+                            label.form-label Status
+
+                            select.form-select(name="status")
+                                option(value="Active") Active
+                                option(value="Inactive") Inactive
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    )
+                        | Close
+
+                    button.btn.btn-primary(type="submit")
+                        | Save Employee
