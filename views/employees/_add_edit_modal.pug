@@ -1,90 +1,49 @@
 .modal.fade#employeeModal(tabindex="-1")
-
     .modal-dialog.modal-lg
-
         .modal-content
-
             .modal-header
-
                 h5.modal-title Employee
+                button.btn-close(type="button" data-bs-dismiss="modal")
 
-                button.btn-close(
-                    data-bs-dismiss="modal"
-                )
-
-            form#employeeForm(
-                 action="/employee_master"
-    method="POST"
-            )
+            form#employeeForm(action="/employee_master" method="POST")
+                input#employeeId(type="hidden")
 
                 .modal-body
-
                     .row.g-3
-
                         .col-md-6
                             label.form-label Employee Code
-                            input.form-control(
-                                type="text"
-                                name="employee_code"
-                            )
+                            input#employeeCode.form-control(type="text" name="employee_code" required)
 
                         .col-md-6
                             label.form-label Employee Name
-                            input.form-control(
-                                type="text"
-                                name="employee_name"
-                            )
+                            input#employeeName.form-control(type="text" name="employee_name" required)
 
                         .col-md-6
                             label.form-label Email
-                            input.form-control(
-                                type="email"
-                                name="email"
-                            )
+                            input#employeeEmail.form-control(type="email" name="email" required)
 
                         .col-md-6
                             label.form-label Mobile
-                            input.form-control(
-                                type="text"
-                                name="mobile"
-                            )
+                            input#employeeMobile.form-control(type="text" name="mobile" required)
 
                         .col-md-6
                             label.form-label Department
-                            input.form-control(
-                                type="text"
-                                name="department"
-                            )
+                            input#employeeDepartment.form-control(type="text" name="department" required)
 
                         .col-md-6
                             label.form-label Designation
-                            input.form-control(
-                                type="text"
-                                name="designation"
-                            )
+                            input#employeeDesignation.form-control(type="text" name="designation" required)
 
                         .col-md-6
                             label.form-label Joining Date
-                            input.form-control(
-                                type="date"
-                                name="joining_date"
-                            )
+                            input#employeeJoining.form-control(type="date" name="joining_date" required)
 
                         .col-md-6
-
                             label.form-label Status
-
-                            select.form-select(name="status")
+                            select#employeeStatus.form-select(name="status" required)
                                 option(value="Active") Active
                                 option(value="Inactive") Inactive
 
                 .modal-footer
-
-                    button.btn.btn-secondary(
-                        type="button"
-                        data-bs-dismiss="modal"
-                    )
-                        | Close
-
-                    button.btn.btn-primary(type="submit")
-                        | Save Employee
+                    button.btn.btn-secondary(type="button" data-bs-dismiss="modal") Close
+                    button.btn.btn-primary(type="submit") Save Employee

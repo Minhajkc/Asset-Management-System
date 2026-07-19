@@ -3,7 +3,6 @@ extends ../layout
 block content
 
     .d-flex.justify-content-between.align-items-center.mb-4
-
         div
             h3.mb-1 Employee Master
             p.text-muted.mb-0 Manage company employees
@@ -17,34 +16,42 @@ block content
             | Add Employee
 
     .card.shadow-sm
-
         .card-body
 
-            .row.g-3.mb-3.align-items-center
+       
+            form(method="GET" action="/employee_master")
+                .row.g-3.mb-3.align-items-center
+                    .col-md-5
+                        input.form-control(
+                            type="text"
+                            name="search"
+                            placeholder="Search employee..."
+                            value=search
+                        )
 
-                .col-md-5
+                    .col-md-3
+                        select.form-select(name="status")
+                            option(value="" selected=!status) All Employees
+                            option(value="Active" selected=status==="Active") Active
+                            option(value="Inactive" selected=status==="Inactive") Inactive
 
-                    input.form-control#searchEmployee(
-                        type="text"
-                        placeholder="Search employee..."
-                    )
+                    .col-md-2
+                        select.form-select(name="limit")
+                            option(value="5" selected=limit==5) 5
+                            option(value="10" selected=limit==10) 10
+                            option(value="25" selected=limit==25) 25
+                            option(value="50" selected=limit==50) 50
 
-                .col-md-3
-
-                    select.form-select#statusFilter
-
-                        option(value="") All Employees
-                        option(value="Active") Active
-                        option(value="Inactive") Inactive
+                    .col-md-2.d-grid
+                        button.btn.btn-primary(type="submit")
+                            i.bi.bi-search.me-1
+                            | Filter
 
             .table-responsive
-
-                table.table.table-striped.table-hover.align-middle#employeeTable
-
+                table.table.table-striped.table-hover.align-middle
                     thead.table-dark
-
                         tr
-                            th Code
+                           
                             th Name
                             th Email
                             th Mobile
@@ -55,6 +62,21 @@ block content
                             th.text-center Action
 
                     include _table
+
+          
+            if totalPages > 1
+                nav.mt-3
+                    ul.pagination.justify-content-end
+
+                        li.page-item(class=currentPage==1 ? "disabled" : "")
+                            a.page-link(href=`/employee_master?page=${currentPage-1}&search=${search}&status=${status}&limit=${limit}`) Previous
+
+                        - for (let i = 1; i <= totalPages; i++)
+                            li.page-item(class=currentPage==i ? "active" : "")
+                                a.page-link(href=`/employee_master?page=${i}&search=${search}&status=${status}&limit=${limit}`)= i
+
+                        li.page-item(class=currentPage==totalPages ? "disabled" : "")
+                            a.page-link(href=`/employee_master?page=${currentPage+1}&search=${search}&status=${status}&limit=${limit}`) Next
 
     include _add_edit_modal
     include _view_modal

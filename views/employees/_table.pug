@@ -1,12 +1,8 @@
 tbody
-
     if employees && employees.length
-
         each employee in employees
-
             tr
-
-                td= employee.employee_code
+             
                 td= employee.employee_name
                 td= employee.email
                 td= employee.mobile
@@ -15,30 +11,46 @@ tbody
                 td= employee.joining_date
 
                 td
-
                     if employee.status === "Active"
-
                         span.badge.bg-success Active
-
                     else
-
                         span.badge.bg-danger Inactive
 
                 td.text-center
-
-                    button.btn.btn-sm.btn-outline-primary.me-1(
+                    button.btn.btn-sm.btn-outline-primary.me-1.viewEmployee(
                         type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#viewEmployeeModal"
+                        data-id=employee.id
+                        data-code=employee.employee_code
+                        data-name=employee.employee_name
+                        data-email=employee.email
+                        data-mobile=employee.mobile
+                        data-department=employee.department
+                        data-designation=employee.designation
+                        data-joining=employee.joining_date
+                        data-status=employee.status
                     )
                         i.bi.bi-eye
 
-                    button.btn.btn-sm.btn-outline-warning(
+           
+                    button.btn.btn-sm.btn-outline-warning.editEmployee(
                         type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#employeeModal"
+                        data-id=employee.id
+                        data-code=employee.employee_code
+                        data-name=employee.employee_name
+                        data-email=employee.email
+                        data-mobile=employee.mobile
+                        data-department=employee.department
+                        data-designation=employee.designation
+                        data-joining=employee.joining_date
+                        data-status=employee.status
                     )
                         i.bi.bi-pencil-square
 
     else
-
         tr
-
             td.text-center.text-muted(colspan="9")
                 | No employees found.

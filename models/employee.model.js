@@ -2,8 +2,16 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const Employee = sequelize.define("Employee", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
+
     employee_code: {
         type: DataTypes.STRING,
+
         allowNull: false,
         unique: true
     },
@@ -13,12 +21,19 @@ const Employee = sequelize.define("Employee", {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+
+        validate: {
+            isEmail: true
+        }
     },
     mobile: {
         type: DataTypes.STRING,
         allowNull: false
     },
+
+
+    
     department: {
         type: DataTypes.STRING,
         allowNull: false
@@ -35,6 +50,9 @@ const Employee = sequelize.define("Employee", {
         type: DataTypes.ENUM("Active", "Inactive"),
         defaultValue: "Active"
     }
+}, {
+    tableName: "Employees",
+    timestamps: true
 });
 
 module.exports = Employee;

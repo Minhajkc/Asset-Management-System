@@ -1,47 +1,93 @@
 const Employee = require("../models/employee.model");
-
+const { Op, fn, col, where } = require("sequelize");
 
 exports.index = async (req, res) => {
-
     try {
+        const page = parseInt(req.query.page, 10) || 1;
+        const limit = parseInt(req.query.limit, 10) || 5;
+        const offset = (page - 1) * limit;
 
-        const employees = await Employee.findAll({
-            order: [["id", "DESC"]]
+        const search = (req.query.search || "").trim().toLowerCase();
+        const status = req.query.status || "";
+
+        const whereCondition = {};
+
+        if (search) {
+            whereCondition[Op.or] = [
+                where(fn("LOWER", col("employee_code")), { [Op.like]: `%${search}%` }),
+
+
+                where(fn("LOWER", col("employee_name")), { [Op.like]: `%${search}%` }),
+                where(fn("LOWER", col("email")), { [Op.like]: `%${search}%` }),
+                
+                where(fn("LOWER", col("mobile")), { [Op.like]: `%${search}%` }),
+                where(fn("LOWER", col("department")), { [Op.like]: `%${search}%` }),
+                where(fn("LOWER", col("designation")), { [Op.like]: `%${search}%` })
+            ];
+        }
+
+        if (status) {
+            whereCondition.status = status;
+        }
+
+        const { count, rows } = await Employee.findAndCountAll({
+            where: whereCondition,
+            order: [["id", "DESC"]],
+            limit,
+            offset
         });
+
+        const totalPages = Math.ceil(count / limit) || 1;
 
         res.render("employees/index", {
             title: "Employee Master",
-            employees
+            employees: rows,
+            currentPage: page,
+            totalPages,
+            search: req.query.search || "",
+            status,
+            limit
         });
-
     } catch (err) {
-
         console.error(err);
 
         res.render("employees/index", {
             title: "Employee Master",
-            employees: []
+            employees: [],
+            currentPage: 1,
+            totalPages: 1,
+            search: "",
+            status: "",
+            limit: 5
         });
-
     }
-
 };
 
 exports.store = async (req, res) => {
-    console.log(req.body)
-
     try {
+        const { id, ...employeeData } = req.body;
 
-        await Employee.create(req.body);
+        await Employee.create(employeeData);
 
         res.redirect("/employee_master");
-
     } catch (err) {
+        console.error(err);
+        res.redirect("/employee_master");
+    }
+};
 
-        console.log(err);
+exports.update = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { id: bodyId, ...employeeData } = req.body;
+
+        await Employee.update(employeeData, {
+            where: { id }
+        });
 
         res.redirect("/employee_master");
-
+    } catch (err) {
+        console.error(err);
+        res.redirect("/employee_master");
     }
-
 };

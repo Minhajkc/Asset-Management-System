@@ -7,8 +7,11 @@ html(lang="en")
         title= title || "Asset Management System"
 
         link(rel="stylesheet", href="/css/bootstrap.min.css")
-        link(rel="stylesheet", href="/icons/font/bootstrap-icons.css")
+        link(rel="stylesheet", href="/icons/bootstrap-icons.css")
         link(rel="stylesheet", href="/css/style.css")
+
+        
+        link(rel="stylesheet", href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css")
         
 
     body.bg-light
@@ -20,7 +23,7 @@ html(lang="en")
                     .p-3.text-white
 
                         h5.mb-4.fw-bold
-                            i.bi.bi-box-seam.me-
+                        
                             | Asset Management
 
                         ul.nav.flex-column
@@ -78,5 +81,9 @@ html(lang="en")
                         block content
 
         script(src="/js/bootstrap.bundle.min.js")
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js")
+        script(src="https://code.jquery.com/jquery-3.7.1.min.js")
+script(src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")
+script(src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js")
         script(src="/js/app.js")
         block scripts
