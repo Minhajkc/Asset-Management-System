@@ -2,8 +2,21 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Asset Categories
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Asset Categories
 
-    .card
-        .card-body
-            p.mb-0 Asset Categories Page
+        button.btn.btn-primary(
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#categoryModal"
+        )
+            i.bi.bi-plus-circle.me-2
+            | Add Category
+
+    include _table
+
+    include _add_edit_modal
+
+    include _view_modal
+
+    script(src="/js/category.js")

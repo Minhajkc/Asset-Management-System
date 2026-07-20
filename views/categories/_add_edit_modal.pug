@@ -1,0 +1,58 @@
+.modal.fade#categoryModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title#categoryModalLabel Add Category
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            form#categoryForm(
+                action="/asset_categories/create"
+                method="POST"
+            )
+
+                .modal-body
+
+                    input(type="hidden" name="id" id="categoryId")
+
+                    .mb-3
+                        label.form-label Category Name
+
+                        input.form-control(
+                            type="text"
+                            name="category_name"
+                            id="categoryName"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Description
+
+                        textarea.form-control(
+                            name="description"
+                            id="categoryDescription"
+                            rows="3"
+                        )
+
+                    .mb-3
+                        label.form-label Status
+
+                        select.form-select(
+                            name="status"
+                            id="categoryStatus"
+                        )
+                            option(value="Active") Active
+                            option(value="Inactive") Inactive
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    ) Close
+
+                    button.btn.btn-primary(type="submit") Save

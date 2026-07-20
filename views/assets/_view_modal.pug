@@ -1,0 +1,70 @@
+.modal.fade#viewAssetModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title Asset Details
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            .modal-body
+
+                p
+                    strong Asset Code:
+                    |  
+                    span#viewAssetCode
+
+                p
+                    strong Asset Name:
+                    |  
+                    span#viewAssetName
+
+                p
+                    strong Category:
+                    |  
+                    span#viewAssetCategory
+
+                p
+                    strong Brand:
+                    |  
+                    span#viewAssetBrand
+
+                p
+                    strong Model:
+                    |  
+                    span#viewAssetModel
+
+                p
+                    strong Serial Number:
+                    |  
+                    span#viewAssetSerial
+
+                p
+                    strong Purchase Date:
+                    |  
+                    span#viewAssetDate
+
+                p
+                    strong Purchase Cost:
+                    |  
+                    span#viewAssetCost
+
+                p
+                    strong Quantity:
+                    |  
+                    span#viewAssetQuantity
+
+                p
+                    strong Status:
+                    |  
+                    span#viewAssetStatus
+
+            .modal-footer
+
+                button.btn.btn-secondary(
+                    type="button"
+                    data-bs-dismiss="modal"
+                ) Close

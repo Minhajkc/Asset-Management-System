@@ -2,8 +2,21 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Asset Master
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Asset Master
 
-    .card
-        .card-body
-            p.mb-0 Asset Management Page
+        button.btn.btn-primary(
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#assetModal"
+        )
+            i.bi.bi-plus-circle.me-2
+            | Add Asset
+
+    include _table
+
+    include _add_edit_modal
+
+    include _view_modal
+
+    script(src="/js/asset.js")

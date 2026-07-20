@@ -15,6 +15,7 @@ const Employee = sequelize.define("Employee", {
         allowNull: false,
         unique: true
     },
+    
     employee_name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -33,7 +34,7 @@ const Employee = sequelize.define("Employee", {
     },
 
 
-    
+
     department: {
         type: DataTypes.STRING,
         allowNull: false

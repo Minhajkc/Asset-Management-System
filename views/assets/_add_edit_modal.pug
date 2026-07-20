@@ -1,0 +1,131 @@
+.modal.fade#assetModal(tabindex="-1")
+    .modal-dialog.modal-lg
+        .modal-content
+
+            .modal-header
+                h5.modal-title#assetModalLabel Add Asset
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            form#assetForm(
+                action="/asset_master/create"
+                method="POST"
+            )
+
+                .modal-body
+
+                    input(type="hidden" name="id" id="assetId")
+
+                    .row
+
+                        .col-md-6.mb-3
+                            label.form-label Asset Code
+
+                            input.form-control(
+                                type="text"
+                                name="asset_code"
+                                id="assetCode"
+                                required
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Asset Name
+
+                            input.form-control(
+                                type="text"
+                                name="asset_name"
+                                id="assetName"
+                                required
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Category
+
+                            select.form-select(
+                                name="category_id"
+                                id="assetCategory"
+                                required
+                            )
+                                option(value="") Select Category
+                                each category in categories
+                                    option(value=category.id)= category.category_name
+
+                        .col-md-6.mb-3
+                            label.form-label Brand
+
+                            input.form-control(
+                                type="text"
+                                name="brand"
+                                id="assetBrand"
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Model
+
+                            input.form-control(
+                                type="text"
+                                name="model"
+                                id="assetModel"
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Serial Number
+
+                            input.form-control(
+                                type="text"
+                                name="serial_number"
+                                id="assetSerial"
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Purchase Date
+
+                            input.form-control(
+                                type="date"
+                                name="purchase_date"
+                                id="assetDate"
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Purchase Cost
+
+                            input.form-control(
+                                type="number"
+                                step="0.01"
+                                name="purchase_cost"
+                                id="assetCost"
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Quantity
+
+                            input.form-control(
+                                type="number"
+                                name="quantity"
+                                id="assetQuantity"
+                                min="1"
+                                value="1"
+                                required
+                            )
+
+                        .col-md-6.mb-3
+                            label.form-label Status
+
+                            select.form-select(
+                                name="status"
+                                id="assetStatus"
+                            )
+                                option(value="Active") Active
+                                option(value="Inactive") Inactive
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    ) Close
+
+                    button.btn.btn-primary(type="submit") Save

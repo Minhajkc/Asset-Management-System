@@ -1,0 +1,35 @@
+.modal.fade#viewCategoryModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title Category Details
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            .modal-body
+
+                p
+                    strong Category Name:
+                    |  
+                    span#viewCategoryName
+
+                p
+                    strong Description:
+                    |  
+                    span#viewCategoryDescription
+
+                p
+                    strong Status:
+                    |  
+                    span#viewCategoryStatus
+
+            .modal-footer
+
+                button.btn.btn-secondary(
+                    type="button"
+                    data-bs-dismiss="modal"
+                ) Close
