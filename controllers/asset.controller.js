@@ -49,6 +49,7 @@ exports.create = async (req, res) => {
 
 
             category_id,
+              branch,
             brand,
             model,
             serial_number,
@@ -62,6 +63,7 @@ exports.create = async (req, res) => {
             asset_code,
             asset_name,
             category_id,
+            branch,
             brand,
             model,
             serial_number,

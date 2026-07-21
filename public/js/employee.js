@@ -9,7 +9,7 @@ $(document).ready(function () {
         $("#viewCode").text(btn.attr("data-code"));
         $("#viewid").text(btn.attr("data-id"));
         $("#viewName").text(btn.attr("data-name"));
-        
+
         $("#viewEmail").text(btn.attr("data-email"));
 
 
@@ -29,6 +29,8 @@ $(document).ready(function () {
           $("#employeeName").val(btn.attr("data-name"));
         $("#employeeEmail").val(btn.attr("data-email"));
         $("#employeeMobile").val(btn.attr("data-mobile"));
+
+        
         $("#employeeDepartment").val(btn.attr("data-department"));
         $("#employeeDesignation").val(btn.attr("data-designation"));
         $("#employeeJoining").val(btn.attr("data-joining"));

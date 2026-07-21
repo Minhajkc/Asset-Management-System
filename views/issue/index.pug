@@ -2,8 +2,21 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Issue Asset
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Issue Asset
 
-    .card
-        .card-body
-            p.mb-0 Issue Asset Page
+        button.btn.btn-primary(
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#issueModal"
+        )
+            i.bi.bi-plus-circle.me-2
+            | Issue Asset
+
+    include _table
+
+    include _add_edit_modal
+
+    include _view_modal
+
+    script(src="/js/issue.js")

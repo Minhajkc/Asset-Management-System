@@ -1,0 +1,50 @@
+.modal.fade#viewIssueModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title Issue Details
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            .modal-body
+
+                p
+                    strong Employee:
+                    |  
+                    span#viewEmployee
+
+                p
+                    strong Asset:
+                    |  
+                    span#viewAsset
+
+                p
+                    strong Quantity:
+                    |  
+                    span#viewQuantity
+
+                p
+                    strong Issue Date:
+                    |  
+                    span#viewDate
+
+                p
+                    strong Status:
+                    |  
+                    span#viewStatus
+
+                p
+                    strong Remarks:
+                    |  
+                    span#viewRemarks
+
+            .modal-footer
+
+                button.btn.btn-secondary(
+                    type="button"
+                    data-bs-dismiss="modal"
+                ) Close

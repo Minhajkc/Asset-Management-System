@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("assetCode").value = this.dataset.code;
             document.getElementById("assetName").value = this.dataset.name;
             document.getElementById("assetCategory").value = this.dataset.category;
+
+            document.getElementById("assetBranch").value = this.dataset.branch;
+
+
             document.getElementById("assetBrand").value = this.dataset.brand;
             document.getElementById("assetModel").value = this.dataset.model;
             document.getElementById("assetSerial").value = this.dataset.serial;
@@ -44,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("viewAssetCode").textContent = this.dataset.code;
             document.getElementById("viewAssetName").textContent = this.dataset.name;
             document.getElementById("viewAssetCategory").textContent = this.dataset.categoryname;
+            document.getElementById("viewAssetBranch").textContent = this.dataset.branch;
+            
             document.getElementById("viewAssetBrand").textContent = this.dataset.brand;
             document.getElementById("viewAssetModel").textContent = this.dataset.model;
             document.getElementById("viewAssetSerial").textContent = this.dataset.serial;

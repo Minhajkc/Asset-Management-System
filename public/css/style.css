@@ -21,8 +21,10 @@ aside .nav-link:hover{
 }
 
 aside .nav-link.active{
-    background:#0d6efd;
-    color:#fff;
+    background:#456aa1;
+
+
+color:#fff;
 }
 
 aside i{
@@ -32,3 +34,4 @@ aside i{
 main{
     min-height:100vh;
 }
+

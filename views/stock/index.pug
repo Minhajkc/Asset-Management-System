@@ -1,9 +1,67 @@
 extends ../layout
 
 block content
-
     h2.mb-4 Stock View
 
     .card
         .card-body
-            p.mb-0 Stock Details
+            table.table.table-bordered.table-hover#stockTable
+                thead.table-dark
+                    tr
+                        th Asset Code
+                        th Asset Name
+                        th Category
+                        th Branch
+                        th Total Qty
+                        th Issued
+                        th Available Stock
+                        th Unit Cost
+                        th Stock Value
+
+                tbody
+                    each asset in assets
+                        tr
+                            td= asset.asset_code
+                            td= asset.asset_name
+                            td= asset.Category.category_name
+                            td= asset.branch
+                            td= asset.quantity
+                            td
+                                span.badge.bg-warning= asset.issuedQuantity
+                            td
+                                span.badge.bg-success= asset.availableQuantity
+                            td ₹ #{Number(asset.purchase_cost).toLocaleString("en-IN")}
+                            td ₹ #{Number(asset.totalValue).toLocaleString("en-IN")}
+
+                tfoot.table-secondary
+                    tr
+                        th(colspan="8").text-end Available Stock Value:
+                        th ₹ #{Number(grandTotalValue).toLocaleString("en-IN")}
+
+    h4.mt-4 Branch Wise Stock Summary
+
+    .row
+        each branch, name in branchTotals
+            .col-md-4.mb-3
+                .card.shadow-sm
+                    .card-body
+                        h5= name
+                        hr
+                        p
+                            strong Total Assets: 
+                            | #{branch.totalAssets}
+                        p
+                            strong Issued: 
+                            | #{branch.issuedAssets}
+                        p
+                            strong Available: 
+                            | #{branch.availableAssets}
+                        p
+                            strong Stock Value: 
+                            | ₹ #{Number(branch.totalValue).toLocaleString("en-IN")}
+
+block scripts
+    script.
+        $(document).ready(function(){
+            $("#stockTable").DataTable();
+        });

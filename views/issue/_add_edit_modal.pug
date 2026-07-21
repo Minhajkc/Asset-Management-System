@@ -1,0 +1,85 @@
+.modal.fade#issueModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title#issueModalLabel Issue Asset
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            form#issueForm(
+                action="/issue_asset/create"
+                method="POST"
+            )
+
+                .modal-body
+
+                    input(type="hidden" id="issueId")
+
+                    .mb-3
+                        label.form-label Employee
+
+                        select.form-select(
+                            name="employee_id"
+                            id="employeeId"
+                            required
+                        )
+                            option(value="") Select Employee
+
+                            each employee in employees
+                                option(value=employee.id)= employee.employee_name
+
+                    .mb-3
+                        label.form-label Asset
+
+                        select.form-select(
+                            name="asset_id"
+                            id="assetId"
+                            required
+                        )
+                            option(value="") Select Asset
+
+                            each asset in assets
+                                option(value=asset.id)= asset.asset_name + " (" + asset.asset_code + ")"
+
+                    .mb-3
+                        label.form-label Quantity
+
+                        input.form-control(
+                            type="number"
+                            name="quantity"
+                            id="issueQuantity"
+                            min="1"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Issue Date
+
+                        input.form-control(
+                            type="date"
+                            name="issue_date"
+                            id="issueDate"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Remarks
+
+                        textarea.form-control(
+                            name="remarks"
+                            id="issueRemarks"
+                            rows="3"
+                        )
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    ) Close
+
+                    button.btn.btn-primary(type="submit") Save

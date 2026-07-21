@@ -22,6 +22,11 @@ const Asset = sequelize.define("Asset", {
         }
     },
 
+    branch: {
+    type: DataTypes.STRING,
+    allowNull: false
+},
+
 
     brand: {
         type: DataTypes.STRING
