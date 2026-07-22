@@ -35,3 +35,18 @@ main{
     min-height:100vh;
 }
 
+
+
+.dashboard-card{
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.dashboard-card:hover{
+    background-color: #456aa1;
+    transform: translateY(-2px);
+}
+
+.dashboard-card:hover .card-title,.dashboard-card:hover .text-muted{
+    color: #ffffff !important;
+}

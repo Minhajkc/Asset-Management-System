@@ -33,7 +33,7 @@ Configure the .env file with your PostgreSQL database details.
 
 Start the server:
 
-npm start
+nodemon app
 
 Open the application in your browser:
 

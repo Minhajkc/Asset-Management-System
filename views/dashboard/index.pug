@@ -4,6 +4,82 @@ block content
 
     h2.mb-4 Dashboard
 
-    .card
-        .card-body
-            p.mb-0 Dashboard Content
+    .row.g-3
+
+        .col-md-4
+            a.text-decoration-none(href="/employee_master")
+                .card.dashboard-card
+
+                
+                    .card-body
+                        h5.card-title.mb-1 Employee Master
+                        p.text-muted.mb-0 Manage employee records
+
+        .col-md-4
+            a.text-decoration-none(href="/asset_categories")
+                .card.dashboard-card
+                    .card-body
+
+
+                        h5.card-title.mb-1 Asset Categories
+                        p.text-muted.mb-0 Manage asset categories
+
+        .col-md-4
+            a.text-decoration-none(href="/asset_master")
+                .card.dashboard-card
+
+
+
+                    .card-body
+                        h5.card-title.mb-1 Asset Master
+                        p.text-muted.mb-0 Manage company assets
+
+        .col-md-4
+            a.text-decoration-none(href="/stock_view")
+                .card.dashboard-card
+
+
+
+                    .card-body
+                        h5.card-title.mb-1 Stock View
+                        p.text-muted.mb-0 View available stock
+
+        .col-md-4
+
+
+            a.text-decoration-none(href="/issue_asset")
+                .card.dashboard-card
+                    .card-body
+
+
+
+                        h5.card-title.mb-1 Issue Asset
+                        p.text-muted.mb-0 Issue assets to employees
+
+        .col-md-4
+            a.text-decoration-none(href="/return_asset")
+                .card.dashboard-card
+                    .card-body
+
+
+                        h5.card-title.mb-1 Return Asset
+                        p.text-muted.mb-0 Manage returned assets
+
+        .col-md-4
+
+
+            a.text-decoration-none(href="/scrap_asset")
+                .card.dashboard-card
+                    .card-body
+                        h5.card-title.mb-1 Scrap Asset
+                        p.text-muted.mb-0 Manage scrapped assets
+
+        .col-md-4
+            a.text-decoration-none(href="/asset_history")
+                .card.dashboard-card
+
+
+
+                    .card-body
+                        h5.card-title.mb-1 Asset History
+                        p.text-muted.mb-0 View transaction history
