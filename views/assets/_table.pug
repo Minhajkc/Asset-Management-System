@@ -19,17 +19,11 @@
                         td= asset.Category ? asset.Category.category_name : "-"
                         td= asset.brand
 
-                        td
-                            if asset.status === "Scrapped"
-                                span.text-decoration-line-through.text-danger= asset.quantity
-                            else
-                                = asset.quantity
+                        td= asset.quantity
 
                         td
                             if asset.status === "Active"
                                 span.badge.bg-success Active
-                            else if asset.status === "Scrapped"
-                                span.badge.bg-danger Scrapped
                             else
                                 span.badge.bg-secondary Inactive
 
@@ -54,7 +48,6 @@
                                 i.bi.bi-eye
 
                       
-                            if asset.status !== "Scrapped"
                                 button.btn.btn-sm.btn-warning.me-1.edit-btn(
                                     type="button"
                                     data-id=asset.id

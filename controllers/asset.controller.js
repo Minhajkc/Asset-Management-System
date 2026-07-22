@@ -1,13 +1,17 @@
 
 
-
+const { Op } = require("sequelize");
 const Asset = require("../models/asset.model");
 const Category = require("../models/category.model");
+
 
 
 exports.index = async (req, res) => {
     try {
         const assets = await Asset.findAll({
+             where: {
+                status: { [Op.ne]: "Scrapped" }
+            },
             include: [{ model: Category }],
             order: [["createdAt", "DESC"]]
         });
