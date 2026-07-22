@@ -41,8 +41,8 @@ http://localhost: YOUR PORt number
 
 
 Project Structure
-models/ — Sequelize models
-controllers/ — Business logic
-routes/ — Express routes
-views/ — Pug templates
-public/ — CSS and JavaScript files
+models-Sequelize models
+controllers/ Business logic
+routes-Express routes
+views-Pug templates
+public-CSS and JavaScript files
