@@ -1,8 +1,4 @@
-exports.index = (req, res) => {
-    res.render("assets/index", {
-        title: "Asset Master"
-    });
-};
+
 
 
 const Asset = require("../models/asset.model");
@@ -85,8 +81,17 @@ exports.update = async (req, res) => {
     try {
         const { id } = req.params;
 
+        const existingAsset = await Asset.findByPk(id);
+        if (!existingAsset) {
+            return res.status(404).send("Asset not found in the db");
+        }
+
+        if (existingAsset.status === "Scrapped" ) {
+            return res.status(400).send("You cannot modify a scrapped item");
+        }
+
         await Asset.update(req.body, {
-            where: { id }
+            where: { id },
         });
 
         res.redirect("/asset_master");

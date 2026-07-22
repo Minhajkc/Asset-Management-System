@@ -1,0 +1,18 @@
+.card
+    .card-body
+
+        table.table.table-bordered.table-hover#scrapTable
+            thead.table-dark
+                tr
+                    th Asset
+                    th Quantity
+                    th Scrap Date
+                    th Reason
+
+            tbody
+                each scrap in scraps
+                    tr
+                        td= scrap.Asset.asset_name + " (" + scrap.Asset.asset_code + ")"
+                        td= scrap.quantity
+                        td= scrap.scrap_date
+                        td= scrap.reason

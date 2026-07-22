@@ -22,7 +22,9 @@ const PORT = process.env.PORT || 3000;
 })();
 
 
-sequelize.sync({ alter: true });
+sequelize.sync({ alter: true })
+    .then(() => console.log("Database synced"))
+    .catch(err => console.log(err));
 
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));

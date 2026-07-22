@@ -51,7 +51,7 @@ const Asset = sequelize.define("Asset", {
         defaultValue: 1
     },
     status: {
-        type: DataTypes.ENUM("Active", "Inactive"),
+        type: DataTypes.ENUM("Active", "Inactive","Scrapped"),
         defaultValue: "Active"
     }
 

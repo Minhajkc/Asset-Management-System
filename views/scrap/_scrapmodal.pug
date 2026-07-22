@@ -1,0 +1,67 @@
+.modal.fade#scrapModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title Scrap Asset
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            form(action="/scrap_asset/create" method="POST")
+
+                .modal-body
+
+                    .mb-3
+                        label.form-label Asset
+
+                        select.form-select(
+                            name="asset_id"
+                            required
+                        )
+                            option(value="") Select Asset
+
+                            each asset in assets
+                                option(value=asset.id)= asset.asset_name + " (" + asset.asset_code + ")"
+
+                    .mb-3
+                        label.form-label Quantity
+
+                        input.form-control(
+                            type="number"
+                            name="quantity"
+                            min="1"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Scrap Date
+
+                        input.form-control(
+                            type="date"
+                            name="scrap_date"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Reason
+
+                        textarea.form-control(
+                            name="reason"
+                            rows="3"
+                            placeholder="Enter reason for scrap"
+                            required
+                        )
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    ) Cancel
+
+                    button.btn.btn-danger(type="submit")
+                        i.bi.bi-trash.me-1
+                        | Confirm Scrap

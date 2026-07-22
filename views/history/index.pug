@@ -2,8 +2,47 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Asset History
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Asset History
 
     .card
         .card-body
-            p.mb-0 Asset History Page
+
+            table.table.table-bordered.table-hover#historyTable
+                thead.table-dark
+                    tr
+                        th Date
+                        th Asset Code
+                        th Asset Name
+                        th Category
+                        th Transaction
+                        th Employee
+                        th Quantity
+                        th Reason
+                        th Unit Cost
+
+                tbody
+                    each item in history
+                        tr
+                            td= item.date
+                            td= item.asset_code
+                            td= item.asset_name
+                            td= item.category
+
+                            td
+                                if item.transaction_type === "Purchased"
+                                    span.badge.bg-primary Purchased
+                                else if item.transaction_type === "Issued"
+                                    span.badge.bg-warning.text-dark Issued
+                                else if item.transaction_type === "Returned"
+                                    span.badge.bg-success Returned
+                                else if item.transaction_type === "Scrapped"
+                                    span.badge.bg-danger Scrapped
+
+                            td= item.employee
+                            td= item.quantity
+                            td= item.reason
+                            td
+                                | ₹ #{Number(item.cost).toLocaleString("en-IN")}
+
+    script(src="/js/history.js")

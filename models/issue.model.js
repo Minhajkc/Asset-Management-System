@@ -38,6 +38,11 @@ const Issue = sequelize.define("Issue", {
     allowNull: true
 },
 
+    return_date:{
+ type: DataTypes.DATEONLY,
+        allowNull: true
+    },
+
     remarks: {
         type: DataTypes.TEXT,
         allowNull: true

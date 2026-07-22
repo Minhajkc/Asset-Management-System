@@ -1,6 +1,5 @@
 .card
     .card-body
-
         table.table.table-bordered.table-hover#assetTable
             thead.table-dark
                 tr
@@ -19,14 +18,23 @@
                         td= asset.asset_name
                         td= asset.Category ? asset.Category.category_name : "-"
                         td= asset.brand
-                        td= asset.quantity
+
+                        td
+                            if asset.status === "Scrapped"
+                                span.text-decoration-line-through.text-danger= asset.quantity
+                            else
+                                = asset.quantity
+
                         td
                             if asset.status === "Active"
                                 span.badge.bg-success Active
+                            else if asset.status === "Scrapped"
+                                span.badge.bg-danger Scrapped
                             else
                                 span.badge.bg-secondary Inactive
 
                         td
+                          
                             button.btn.btn-sm.btn-info.me-1.view-btn(
                                 type="button"
                                 data-id=asset.id
@@ -45,29 +53,31 @@
                             )
                                 i.bi.bi-eye
 
-                            button.btn.btn-sm.btn-warning.me-1.edit-btn(
-                                type="button"
-                                data-id=asset.id
-                                data-code=asset.asset_code
-                                data-name=asset.asset_name
-                                data-category=asset.category_id
-                                data-branch=asset.branch
-                                data-brand=asset.brand
-                                data-model=asset.model
-                                data-serial=asset.serial_number
-                                data-date=asset.purchase_date
-                                data-cost=asset.purchase_cost
-                                data-quantity=asset.quantity
-                                data-status=asset.status
-                            )
-                                i.bi.bi-pencil
-
-                            form.d-inline(
-                                action="/asset_master/delete/" + asset.id
-                                method="POST"
-                            )
-                                button.btn.btn-sm.btn-danger(
-                                    type="submit"
-                                    onclick="return confirm('Delete this asset?')"
+                      
+                            if asset.status !== "Scrapped"
+                                button.btn.btn-sm.btn-warning.me-1.edit-btn(
+                                    type="button"
+                                    data-id=asset.id
+                                    data-code=asset.asset_code
+                                    data-name=asset.asset_name
+                                    data-category=asset.category_id
+                                    data-branch=asset.branch
+                                    data-brand=asset.brand
+                                    data-model=asset.model
+                                    data-serial=asset.serial_number
+                                    data-date=asset.purchase_date
+                                    data-cost=asset.purchase_cost
+                                    data-quantity=asset.quantity
+                                    data-status=asset.status
                                 )
-                                    i.bi.bi-trash
+                                    i.bi.bi-pencil
+
+                                form.d-inline(
+                                    action="/asset_master/delete/" + asset.id
+                                    method="POST"
+                                )
+                                    button.btn.btn-sm.btn-danger(
+                                        type="submit"
+                                        onclick="return confirm('Delete this asset?')"
+                                    )
+                                        i.bi.bi-trash

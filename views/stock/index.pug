@@ -1,10 +1,16 @@
 extends ../layout
 
 block content
-    h2.mb-4 Stock View
 
-    .card
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Stock View
+
+    .card.shadow-sm
+        .card-header.bg-white
+            h5.mb-0 Current Available Stock
+
         .card-body
+
             table.table.table-bordered.table-hover#stockTable
                 thead.table-dark
                     tr
@@ -12,56 +18,85 @@ block content
                         th Asset Name
                         th Category
                         th Branch
-                        th Total Qty
-                        th Issued
-                        th Available Stock
-                        th Unit Cost
-                        th Stock Value
+                        th.text-center Total Qty
+                        th.text-center Issued
+                        th.text-center Scrapped
+                        th.text-center Available
+                        th.text-end Unit Cost
+                        th.text-end Stock Value
 
                 tbody
                     each asset in assets
                         tr
                             td= asset.asset_code
                             td= asset.asset_name
-                            td= asset.Category.category_name
+                            td= asset.Category ? asset.Category.category_name : "-"
                             td= asset.branch
-                            td= asset.quantity
-                            td
-                                span.badge.bg-warning= asset.issuedQuantity
-                            td
+
+                            td.text-center
+                                span.badge.bg-primary= asset.quantity
+
+                            td.text-center
+                                span.badge.bg-warning.text-dark= asset.issuedQuantity
+
+                            td.text-center
+                                span.badge.bg-danger= asset.scrappedQuantity
+
+                            td.text-center
                                 span.badge.bg-success= asset.availableQuantity
-                            td ₹ #{Number(asset.purchase_cost).toLocaleString("en-IN")}
-                            td ₹ #{Number(asset.totalValue).toLocaleString("en-IN")}
+
+                            td.text-end
+                                | ₹ #{Number(asset.purchase_cost).toLocaleString("en-IN")}
+
+                            td.text-end.fw-semibold
+                                | ₹ #{Number(asset.totalValue).toLocaleString("en-IN")}
 
                 tfoot.table-secondary
                     tr
-                        th(colspan="8").text-end Available Stock Value:
-                        th ₹ #{Number(grandTotalValue).toLocaleString("en-IN")}
+                        th(colspan="9").text-end Total Available Stock Value:
+                        th.text-end
+                            | ₹ #{Number(grandTotalValue).toLocaleString("en-IN")}
 
-    h4.mt-4 Branch Wise Stock Summary
+    h4.mt-4.mb-3 Branch Wise Stock Summary
 
     .row
         each branch, name in branchTotals
-            .col-md-4.mb-3
-                .card.shadow-sm
+            .col-md-6.col-lg-4.mb-3
+                .card.shadow-sm.h-100
                     .card-body
-                        h5= name
+                        h5.card-title= name
+
                         hr
-                        p
-                            strong Total Assets: 
-                            | #{branch.totalAssets}
-                        p
-                            strong Issued: 
-                            | #{branch.issuedAssets}
-                        p
-                            strong Available: 
-                            | #{branch.availableAssets}
-                        p
-                            strong Stock Value: 
-                            | ₹ #{Number(branch.totalValue).toLocaleString("en-IN")}
+
+                        .d-flex.justify-content-between.mb-2
+                            span Total Assets
+                            strong= branch.totalAssets
+
+                        .d-flex.justify-content-between.mb-2
+                            span Issued
+                            strong.text-warning= branch.issuedAssets
+
+                        .d-flex.justify-content-between.mb-2
+                            span Scrapped
+                            strong.text-danger= branch.scrappedAssets
+
+                        .d-flex.justify-content-between.mb-2
+                            span Available
+                            strong.text-success= branch.availableAssets
+
+                        hr
+
+                        .d-flex.justify-content-between
+                            span Stock Value
+                            strong
+                                | ₹ #{Number(branch.totalValue).toLocaleString("en-IN")}
 
 block scripts
+
     script.
-        $(document).ready(function(){
-            $("#stockTable").DataTable();
+        $(document).ready(function () {
+            $('#stockTable').DataTable({
+                pageLength: 10,
+                order: [[0, 'asc']]
+            });
         });

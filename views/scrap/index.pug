@@ -2,8 +2,19 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Scrap Asset
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Scrap Asset
 
-    .card
-        .card-body
-            p.mb-0 Scrap Asset Page
+        button.btn.btn-danger(
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#scrapModal"
+        )
+            i.bi.bi-trash.me-2
+            | Scrap Asset
+
+    include _table
+
+    include _scrapmodal
+
+    script(src="/js/scrap.js")

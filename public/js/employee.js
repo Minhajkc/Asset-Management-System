@@ -15,7 +15,8 @@ $(document).ready(function () {
 
         $("#viewMobile").text(btn.attr("data-mobile"));
         $("#viewDepartment").text(btn.attr("data-department"));
-        $("#viewDesignation").text(btn.attr("data-designation"));
+
+    $("#viewDesignation").text(btn.attr("data-designation"));
         $("#viewJoiningDate").text(btn.attr("data-joining"));
         $("#viewStatus").text(btn.attr("data-status"));
     });
@@ -30,7 +31,7 @@ $(document).ready(function () {
         $("#employeeEmail").val(btn.attr("data-email"));
         $("#employeeMobile").val(btn.attr("data-mobile"));
 
-        
+
         $("#employeeDepartment").val(btn.attr("data-department"));
         $("#employeeDesignation").val(btn.attr("data-designation"));
         $("#employeeJoining").val(btn.attr("data-joining"));

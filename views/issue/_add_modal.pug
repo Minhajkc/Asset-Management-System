@@ -3,28 +3,25 @@
         .modal-content
 
             .modal-header
-                h5.modal-title#issueModalLabel Issue Asset
+                h5.modal-title Issue Asset
 
                 button.btn-close(
                     type="button"
                     data-bs-dismiss="modal"
                 )
 
-            form#issueForm(
+            form(
                 action="/issue_asset/create"
                 method="POST"
             )
 
                 .modal-body
 
-                    input(type="hidden" id="issueId")
-
                     .mb-3
                         label.form-label Employee
 
                         select.form-select(
                             name="employee_id"
-                            id="employeeId"
                             required
                         )
                             option(value="") Select Employee
@@ -37,7 +34,6 @@
 
                         select.form-select(
                             name="asset_id"
-                            id="assetId"
                             required
                         )
                             option(value="") Select Asset
@@ -51,7 +47,6 @@
                         input.form-control(
                             type="number"
                             name="quantity"
-                            id="issueQuantity"
                             min="1"
                             required
                         )
@@ -62,7 +57,6 @@
                         input.form-control(
                             type="date"
                             name="issue_date"
-                            id="issueDate"
                             required
                         )
 
@@ -71,7 +65,6 @@
 
                         textarea.form-control(
                             name="remarks"
-                            id="issueRemarks"
                             rows="3"
                         )
 
@@ -82,4 +75,4 @@
                         data-bs-dismiss="modal"
                     ) Close
 
-                    button.btn.btn-primary(type="submit") Save
+                    button.btn.btn-primary(type="submit") Issue Asset

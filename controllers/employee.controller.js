@@ -19,7 +19,7 @@ exports.index = async (req, res) => {
 
                 where(fn("LOWER", col("employee_name")), { [Op.like]: `%${search}%` }),
                 where(fn("LOWER", col("email")), { [Op.like]: `%${search}%` }),
-                
+
                 where(fn("LOWER", col("mobile")), { [Op.like]: `%${search}%` }),
                 where(fn("LOWER", col("department")), { [Op.like]: `%${search}%` }),
                 where(fn("LOWER", col("designation")), { [Op.like]: `%${search}%` })
@@ -44,6 +44,8 @@ exports.index = async (req, res) => {
             employees: rows,
             currentPage: page,
             totalPages,
+
+
             search: req.query.search || "",
             status,
             limit
@@ -77,6 +79,7 @@ exports.store = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
+    console.log(req.params.id)
     try {
         const { id } = req.params;
         const { id: bodyId, ...employeeData } = req.body;
@@ -84,6 +87,8 @@ exports.update = async (req, res) => {
         await Employee.update(employeeData, {
             where: { id }
         });
+
+
 
         res.redirect("/employee_master");
     } catch (err) {

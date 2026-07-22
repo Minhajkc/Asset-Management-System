@@ -49,11 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("viewAssetName").textContent = this.dataset.name;
             document.getElementById("viewAssetCategory").textContent = this.dataset.categoryname;
             document.getElementById("viewAssetBranch").textContent = this.dataset.branch;
-            
+
             document.getElementById("viewAssetBrand").textContent = this.dataset.brand;
-            document.getElementById("viewAssetModel").textContent = this.dataset.model;
-            document.getElementById("viewAssetSerial").textContent = this.dataset.serial;
-            document.getElementById("viewAssetDate").textContent = this.dataset.date;
+        document.getElementById("viewAssetModel").textContent = this.dataset.model;
+            
+        document.getElementById("viewAssetSerial").textContent = this.dataset.serial;
+            
+        
+        document.getElementById("viewAssetDate").textContent = this.dataset.date;
             document.getElementById("viewAssetCost").textContent = this.dataset.cost;
             document.getElementById("viewAssetQuantity").textContent = this.dataset.quantity;
             document.getElementById("viewAssetStatus").textContent = this.dataset.status;

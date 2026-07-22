@@ -1,0 +1,68 @@
+.modal.fade#returnModal(tabindex="-1")
+    .modal-dialog
+        .modal-content
+
+            .modal-header
+                h5.modal-title Return Asset
+
+                button.btn-close(
+                    type="button"
+                    data-bs-dismiss="modal"
+                )
+
+            form#returnForm(method="POST")
+
+                .modal-body
+
+                    p
+                        strong Employee:
+                        |  
+                        span#returnEmployee
+
+                    p
+                        strong Asset:
+                        |  
+                        span#returnAsset
+
+                    p
+                        strong Quantity:
+                        |  
+                        span#returnQuantity
+
+                    p
+                        strong Issue Date:
+                        |  
+                        span#returnIssueDate
+
+                    .mb-3
+                        label.form-label Return Date
+
+                        input.form-control(
+                            type="date"
+                            name="return_date"
+                            required
+                        )
+
+                    .mb-3
+                        label.form-label Return Reason
+
+                        select.form-select(
+                            name="return_reason"
+                            required
+                        )
+                            option(value="") Select Reason
+                            option(value="Upgrade") Upgrade
+                            option(value="Repair") Repair
+                            option(value="Resignation") Resignation
+                            option(value="Other") Other
+
+                .modal-footer
+
+                    button.btn.btn-secondary(
+                        type="button"
+                        data-bs-dismiss="modal"
+                    ) Cancel
+
+                    button.btn.btn-success(type="submit")
+                        i.bi.bi-check-circle.me-1
+                        | Confirm Return

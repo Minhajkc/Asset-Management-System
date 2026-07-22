@@ -1,36 +1,31 @@
 .card
     .card-body
 
-        table.table.table-bordered.table-hover#issueTable
+        table.table.table-bordered.table-hover#returnTable
             thead.table-dark
                 tr
                     th Employee
                     th Asset
                     th Quantity
                     th Issue Date
-                    th Status
-                    th View
+                    th Actions
 
             tbody
-                each issue in issues
+                each issue in issuedAssets
                     tr
                         td= issue.Employee.employee_name
-                        td= issue.Asset.asset_name
+                        td= issue.Asset.asset_name + " (" + issue.Asset.asset_code + ")"
                         td= issue.quantity
                         td= issue.issue_date
 
                         td
-                            span.badge.bg-warning.text-dark Issued
-
-                        td
-                            button.btn.btn-sm.btn-info.view-btn(
+                            button.btn.btn-sm.btn-success.return-btn(
                                 type="button"
                                 data-id=issue.id
                                 data-employee=issue.Employee.employee_name
                                 data-asset=issue.Asset.asset_name
                                 data-quantity=issue.quantity
                                 data-date=issue.issue_date
-                                data-status=issue.status
-                                data-remarks=issue.remarks
                             )
-                                i.bi.bi-eye
+                                i.bi.bi-arrow-return-left.me-1
+                                | Return

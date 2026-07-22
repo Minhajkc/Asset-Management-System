@@ -2,8 +2,11 @@ extends ../layout
 
 block content
 
-    h2.mb-4 Return Asset
+    .d-flex.justify-content-between.align-items-center.mb-4
+        h2.mb-0 Return Asset
 
-    .card
-        .card-body
-            p.mb-0 Return Asset Page
+    include _table
+
+    include _returnmodal
+
+    script(src="/js/return.js")
