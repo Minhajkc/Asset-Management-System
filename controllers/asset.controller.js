@@ -77,6 +77,18 @@ exports.create = async (req, res) => {
             status
         } = req.body;
 
+
+        if (!asset_code || !asset_name || !category_id || !branch) {
+            return res.status(400).send("fields are missing");
+        }
+
+         const category = await Category.findByPk(category_id);
+
+        if (!category) {
+            return res.status(400).send("Invalid category ");
+        }
+
+
         await Asset.create({
             asset_code,
             asset_name,
@@ -131,10 +143,17 @@ exports.delete = async (req, res) => {
 
 
         const { id } = req.params;
+        const asset = await Asset.findByPk(id);
 
-        await Asset.destroy({
-            where: { id }
-        });
+        if (!asset) {
+            return res.status(404).send("Asset not found");
+        }
+
+        if (asset.status === "Scrapped") {
+            return res.status(400).send("Scrapped asset cannot delete");
+        }
+
+         await asset.destroy();
 
         res.redirect("/asset_master");
     } catch (error) {

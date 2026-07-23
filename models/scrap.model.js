@@ -14,7 +14,10 @@ const Scrap = sequelize.define("Scrap", {
 
     quantity: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            min: 1
+        }
     },
 
     scrap_date: {
@@ -24,7 +27,10 @@ const Scrap = sequelize.define("Scrap", {
 
     reason: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+          validate: {
+            notEmpty: true
+        }
     }
 
 }, {

@@ -28,6 +28,9 @@ exports.create = async (req, res) => {
     console.log(req.body,'dagttt')
     try {
         const { category_name, description, status } = req.body;
+         if (!category_name || !category_name.trim()) {
+            return res.status(400).send("Category name required");
+        }
 
         await Category.create({
             category_name,
@@ -48,6 +51,11 @@ exports.update = async (req, res) => {
         const { id } = req.params;
         console.log(id,'this is id')
         const { category_name, description, status } = req.body;
+         if (!category_name || !category_name.trim()) {
+            return res.status(400).send("Category name was required");
+        }
+
+
 
         await Category.update(
             { category_name, description, status },
@@ -64,12 +72,15 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const { id } = req.params;
+         const { id } = req.params;
 
-        await Category.destroy({
-            where: { id }
-        });
+        const category = await Category.findByPk(id);
 
+        if (!category) {
+            return res.status(404).send("Category is not found");
+        }
+
+        await category.destroy();
         res.redirect("/asset_categories");
     } catch (error) {
         console.error(error);

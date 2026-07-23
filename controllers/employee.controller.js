@@ -67,9 +67,42 @@ exports.index = async (req, res) => {
 
 exports.store = async (req, res) => {
     try {
-        const { id, ...employeeData } = req.body;
+          const {
+            employee_code,
+            employee_name,
+            email,
+            mobile,
+            department,
+            designation,
+            joining_date,
+            status
+        } = req.body;
 
-        await Employee.create(employeeData);
+        if (
+            !employee_code ||
+            !employee_name ||
+            !email ||
+            !mobile ||
+            !department ||
+            !designation ||
+            !joining_date
+        ) {
+            return res.status(400).send("All required fieldsneed filled");
+        }
+
+
+       await Employee.create({
+            employee_code: employee_code.trim(),
+            employee_name: employee_name.trim(),
+            email: email.trim(),
+            mobile: mobile.trim(),
+
+
+        department: department.trim(),
+            designation: designation.trim(),
+            joining_date,
+            status
+        });
 
         res.redirect("/employee_master");
     } catch (err) {
@@ -83,6 +116,13 @@ exports.update = async (req, res) => {
     try {
         const { id } = req.params;
         const { id: bodyId, ...employeeData } = req.body;
+
+         const employee = await Employee.findByPk(id);
+
+
+        if (!employee) {
+            return res.status(404).send("Employee not found");
+        }
 
         await Employee.update(employeeData, {
             where: { id }

@@ -23,7 +23,7 @@ exports.index = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server Error");
+        res.status(500).send("ServerError");
     }
 };
 
@@ -31,11 +31,14 @@ exports.create = async (req, res) => {
     try {
 
         const { asset_id, quantity, scrap_date, reason } = req.body;
+         if (!asset_id || !quantity || !scrap_date || !reason) {
+            return res.status(400).send("All fields are required");
+        }
 
         const asset = await Asset.findByPk(asset_id);
 
         if (!asset) {
-            return res.send("Asset not found");
+            return res.status(404).send("Asset not found");
         }
 
         const issuedQty = await Issue.sum("quantity", {
@@ -66,7 +69,7 @@ exports.create = async (req, res) => {
 
 
 
-        
+
 
         const totalScrapped = scrappedQty + parseInt(quantity);
 
@@ -78,6 +81,6 @@ exports.create = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server Error");
+        res.status(500).send("Server on Error");
     }
 };

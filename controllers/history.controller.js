@@ -56,6 +56,8 @@ exports.index = async (req, res) => {
                         asset_name: asset.asset_name,
                         category: asset.Category.category_name,
                         transaction_type: "Returned",
+
+                        
                         employee: issue.Employee.employee_name,
                         quantity: issue.quantity,
                         date: issue.return_date,

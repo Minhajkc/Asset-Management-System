@@ -26,7 +26,10 @@ const Issue = sequelize.define("Issue", {
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 1
+        defaultValue: 1,
+         validate: {
+            min: 1
+        }
     },
 
     issue_date: {

@@ -18,7 +18,7 @@ exports.index = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server Error");
+        res.status(500).send("Server error");
     }
 };
 
@@ -28,12 +28,18 @@ exports.returnAsset = async (req, res) => {
         const { id } = req.params;
         const { return_date, return_reason } = req.body;
 
-        const issue = await Issue.findByPk(id);
-
-        if (!issue) {
-            return res.send("Issue record not found");
+         if (!return_date || !return_reason) {
+            return res.status(400).send("Return date and reason ss required");
         }
 
+        const issue = await Issue.findByPk(id);
+
+          if (!issue) {
+            return res.status(404).send("Issue record not found");
+        }
+          if (issue.status === "Returned") {
+            return res.status(400).send("This assetalready returned");
+        }
         await issue.update({
             status: "Returned",
             return_date,
@@ -44,6 +50,6 @@ exports.returnAsset = async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Server Error");
+        res.status(500).send("Servererror");
     }
 };

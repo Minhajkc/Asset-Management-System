@@ -6,11 +6,17 @@ const Asset = sequelize.define("Asset", {
     asset_code: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: {
+            notEmpty: true
+        }
     },
     asset_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+          validate: {
+            notEmpty: true
+        }
     },
 
     category_id: {
@@ -24,7 +30,10 @@ const Asset = sequelize.define("Asset", {
 
     branch: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+     validate: {
+            notEmpty: true
+        }
 },
 
 
@@ -44,7 +53,10 @@ const Asset = sequelize.define("Asset", {
         type: DataTypes.DATEONLY
     },
     purchase_cost: {
-        type: DataTypes.DECIMAL(10, 2)
+        type: DataTypes.DECIMAL(10, 2),
+          validate: {
+            min: 1
+        }
     },
     quantity: {
         type: DataTypes.INTEGER,

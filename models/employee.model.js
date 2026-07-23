@@ -13,35 +13,55 @@ const Employee = sequelize.define("Employee", {
         type: DataTypes.STRING,
 
         allowNull: false,
-        unique: true
+        unique: true,
+
+         validate: {
+            notEmpty: true
+        }
     },
     
     employee_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+
+         validate: {
+            notEmpty: true
+        }
     },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
 
         validate: {
-            isEmail: true
+            isEmail: true,
+            notEmpty: true
         }
     },
     mobile: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+         validate: {
+            notEmpty: true,
+            isNumeric: true,
+            len: [10, 15]
+        }
     },
 
 
 
     department: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+         validate: {
+            notEmpty: true
+        }
     },
     designation: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+         validate: {
+            notEmpty: true
+        }
     },
     joining_date: {
         type: DataTypes.DATEONLY,

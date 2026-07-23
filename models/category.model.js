@@ -5,7 +5,10 @@ const Category = sequelize.define("Category", {
     category_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
+         validate: {
+            notEmpty: true
+        }
     },
     description: {
         type: DataTypes.TEXT,

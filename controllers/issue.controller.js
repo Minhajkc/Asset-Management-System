@@ -35,7 +35,18 @@ exports.create = async (req, res) => {
     try {
         const { employee_id, asset_id, quantity, issue_date, remarks } = req.body;
 
+        if (!employee_id || !asset_id || !quantity || !issue_date) {
+            return res.status(400).send("Required fieldsmissing");
+        }
+         const employee = await Employee.findByPk(employee_id);
+        if (!employee || employee.status !== "Active") {
+            return res.status(400).send("Invalid employee ");
+        }
+
         const asset = await Asset.findByPk(asset_id);
+        if (!asset || asset.status !== "Active") {
+            return res.status(400).send("Invalid asset selected");
+        }
 
         if (!asset) {
             return res.send("Asset not found");
