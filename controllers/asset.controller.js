@@ -8,18 +8,33 @@ const Category = require("../models/category.model");
 
 exports.index = async (req, res) => {
     try {
+
+        const { category, search } = req.query;
+
+        const whereCondition = {
+            status: { [Op.ne]: "Scrapped" }
+        };
+        if (category && category !== "") {
+            whereCondition.category_id = category;
+        }
+
+
+        if (search && search.trim() !== "") {
+            whereCondition[Op.or] = [
+                { asset_code: { [Op.iLike]: `%${search}%` } },
+                { asset_name: { [Op.iLike]: `%${search}%` } },
+
+        { brand: { [Op.iLike]: `%${search}%` } },
+                { model: { [Op.iLike]: `%${search}%` } },
+                { serial_number: { [Op.iLike]: `%${search}%` } }
+            ];
+        }
+
         const assets = await Asset.findAll({
-             where: {
-                status: { [Op.ne]: "Scrapped" }
-            },
+            where: whereCondition,
             include: [{ model: Category }],
             order: [["createdAt", "DESC"]]
         });
-
-        console.log(assets)
-
-
-
 
         const categories = await Category.findAll({
             where: { status: "Active" },
@@ -29,9 +44,12 @@ exports.index = async (req, res) => {
         res.render("assets/index", {
             title: "Asset Master",
             assets,
-            categories
+            categories,
+            filters: {
+                category: category || "",
+                search: search || ""
+            }
         });
-
 
     } catch (error) {
         console.error(error);

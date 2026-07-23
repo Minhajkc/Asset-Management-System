@@ -9,14 +9,37 @@ block content
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#assetModal"
-        )
-            i.bi.bi-plus-circle.me-2
-            | Add Asset
+        ) Add Asset
+    .card.mb-3
+        .card-body
+            form(method="GET" action="/asset_master")
+                .row.g-3
+
+                    .col-md-4
+                        label.form-label Asset Type
+                        select.form-select(name="category")
+                            option(value="") All Categories
+
+                            each category in categories
+                                option(
+                                    value=category.id
+                                    selected=filters.category == category.id.toString()
+                                )= category.category_name
+
+                    .col-md-6
+                        label.form-label Search
+                        input.form-control(
+                            type="text"
+                            name="search"
+                            placeholder="Search by code, name, brand, model, serial number"
+                            value=filters.search
+                        )
+
+                    .col-md-2.d-flex.align-items-end
+                        button.btn.btn-primary.w-100(type="submit") Filter
 
     include _table
-
     include _add_edit_modal
-
     include _view_modal
 
     script(src="/js/asset.js")
